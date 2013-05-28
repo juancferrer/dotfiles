@@ -67,30 +67,11 @@ set wildmenu "Better file explorer autocompletion
 set wildmode=list:longest,full
 set tags+=~/.vim/tags/python.ctags "Add python tags
 set tags+=~/.vim/tags/localPython.ctags "Add local site-packages tags
-set tags+=~/.vim/tags/dojoCore.tags "Dojo core tags
 colorscheme desert 
 
 "Better tab switching
 map <S-h> gT
 map <S-l> gt 
-
-"Settings for better SuperTab completion menu
-set completeopt=longest,menuone
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-inoremap <expr> <C-n> pumvisible() ? '<C-n>' : 
-  \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
-inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
-  \ '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
-
-"SuperTab plugin, enable smarter completion using omnifunc keys
-let g:SuperTabDefaultCompletionType = "context"
-let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"
-
-"Open the taglist by default
-"let Tlist_Auto_Open = 1
-
-"Display the current tag name in the status line
-"set statusline+=%<%f%=%([%{Tlist_Get_Tagname_By_Line()}]%)
 
 "Toggle the taglist
 nnoremap <silent> <F8> :TlistToggle<CR>
@@ -107,4 +88,24 @@ au BufNewFile,BufRead *.rpy sefiletype python
 
 "" Set .tac files to python filetype
 au BufNewFile,BufRead *.tac sefiletype python
+
+"" Omnicomplete stuff
+autocmd FileType python set omnifunc=pythoncomplete#Complete
+autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+
+function! CleverTab()
+  if pumvisible()
+    return "\<C-N>"
+  endif
+  if strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
+    return "\<Tab>"
+  elseif exists('&omnifunc') && &omnifunc != ''
+    return "\<C-X>\<C-O>"
+  else
+    return "\<C-N>"
+  endif
+endfunction
+inoremap <Tab> <C-R>=CleverTab()<CR>
 
