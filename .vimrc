@@ -117,13 +117,16 @@ colorscheme desert
 "map <S-l> gt 
 
 " Swtich between buffers
-map <S-h> :bnext<CR>
-map <S-l> :bprevious<CR> 
+map <S-l> :bnext<CR>
+map <S-h> :bprevious<CR> 
 "
 "Better tab switching
 map <S-k> gT
 map <S-j> gt
 
+" Close the current buffer and move to the previous one
+" " This replicates the idea of closing a tab
+cmap bq :bp <BAR> bd #<CR>
 
 "Highlight chars after the 80 character mark
 :au BufWinEnter * let w:m1=matchadd('Search', '\%<81v.\%>77v', -1)
