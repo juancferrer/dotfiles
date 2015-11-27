@@ -129,8 +129,11 @@ map <S-j> gt
 cmap bq :bp <BAR> bd #<CR>
 
 "Highlight chars after the 80 character mark
-:au BufWinEnter * let w:m1=matchadd('Search', '\%<81v.\%>77v', -1)
-:au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+":au BufWinEnter * let w:m1=matchadd('Search', '\%<81v.\%>77v', -1)
+":au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+
+" Remove trailing whitepsace
+autocmd FileType c,cpp,java,php,python autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 " Set .rpy files to python filetype
 au BufNewFile,BufRead *.rpy sefiletype python
