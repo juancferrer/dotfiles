@@ -116,14 +116,19 @@ fi
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 
-## Add ndk stuff
-PATH=$PATH:/home/juan/Downloads/android-ndk-r9c:/home/juan/Downloads/android-studio/sdk/platform-tools
 
 ## Add rvm stuff
 #PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 ## Add virtualenv stuff
+export PROJECT_HOME="/home/juan/workspace"
 source /usr/local/bin/virtualenvwrapper.sh
 
 ## Add arm gcc stuff
 PATH=$PATH:/opt/gcc-arm-none-eabi-4_7-2013q3/bin
+
+# Android stuff
+# Only for appium
+export ANDROID_HOME="/home/juan/Android/Sdk"
+## Add ndk stuff
+PATH=$PATH:/home/juan/Downloads/android-ndk-r9c:/home/juan/Android/Sdk/platform-tools:/home/juan/Android/Sdk/tools
