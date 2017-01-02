@@ -63,9 +63,6 @@ Plugin 'tpope/vim-fugitive'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
-let g:airline_theme='laederon' " set the theme
-
-
 
 " Vim5 and later versions support syntax highlighting. Uncommenting the next
 " line enables syntax highlighting by default.
@@ -135,6 +132,7 @@ cmap bq :bp <BAR> bd #<CR>
 " Remove trailing whitepsace
 autocmd FileType c,cpp,java,php,python autocmd BufWritePre <buffer> :%s/\s\+$//e
 
+
 " Set .rpy files to python filetype
 au BufNewFile,BufRead *.rpy sefiletype python
 
@@ -144,3 +142,7 @@ au BufNewFile,BufRead *.tac sefiletype python
 " airline stuff
 set laststatus=2 " Make airline show up even without splits
 let g:airline#extensions#tabline#enabled = 1  " Show the tabline thingy at the top
+
+" 2 spaces for html stuff
+autocmd FileType html setlocal shiftwidth=2 tabstop=2
+autocmd FileType htmldjango setlocal shiftwidth=2 tabstop=3
