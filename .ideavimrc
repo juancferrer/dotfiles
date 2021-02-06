@@ -1,0 +1,4 @@
+set ignorecase
+set smartcase
+map <S-h> gT
+map <s-l> gt
